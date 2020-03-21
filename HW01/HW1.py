@@ -27,15 +27,6 @@ class MyList(list):
 			print("Список содержит элементы неправильного типа")
 		return (res)
 
-	def sum(self):
-		sum_self = 0
-		for i in range(len(self)):
-			try:
-				sum_self += self[i]
-			except TypeError:
-				sum_self += 0
-		return (sum_self)
-
 	def __lt__(self, b):
 		return (sum(self) < sum(b))
 
@@ -66,10 +57,10 @@ class MyMiniBank():
 		1 USD = 68,56 RUB
 		1 Gram = 1 000 000 000 RUB (Потому что можем)
 	'''
-	def __init__(self, money, currency = 'RUB'):
+	def __init__(self, money, currency = None):
 		try:
 			if (currency == "RUB" or currency == "BYN" or currency == "EUR" 
-					or currency == "Gram" or currency == "USD") and money >= 0:
+					or currency == "Gram" or currency == "USD" or currency is None) and money >= 0:
 				self.money = money
 				self.currency = currency
 			else:
@@ -85,6 +76,11 @@ class MyMiniBank():
 	
 	def __add__(self, b):
 		res = MyMiniBank(self.money, self.currency)
+
+		if self.currency is None:
+			res.money += b.money
+			res.currency = b.currency
+			return(res)
 		if self.currency == b.currency:
 			res.money += b.money
 		else :
