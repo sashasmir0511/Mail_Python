@@ -1,4 +1,5 @@
 from typing import List
+from Cython_mul import Cython_mul
 
 class MyMatrix:
 	"""
@@ -66,6 +67,10 @@ class MyMatrix:
 			return MyMatrix(lst)
 		else:
 			return self
+	
+	def C_mul(self, b):
+		if self.len_m == b.len_n:
+			return MyMatrix(Cython_mul(self.lst, b.lst, tuple([self.len_n, self.len_m]), tuple([b.len_n, b.len_m])))
 	
 	def __truediv__(self, b: int):
 		lst = [0] * self.len_n

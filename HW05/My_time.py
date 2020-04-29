@@ -11,9 +11,15 @@ def time_test():
 	b = MyMatrix(lst2)
 	c = CMatrix(lst1)
 	d = CMatrix(lst2)
+	
 	start_time = datetime.now()
 	a * b
 	print(f"Time Python is {datetime.now() - start_time}")
+
+	start_time = datetime.now()
+	a.C_mul(b)
+	print(f"Time CPython is {datetime.now() - start_time}")
+
 	start_time = datetime.now()
 	c * d
 	print(f"Time Cython is {datetime.now() - start_time}")
