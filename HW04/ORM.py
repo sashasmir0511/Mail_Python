@@ -1,7 +1,6 @@
 import sqlite3
 from MyDescriptor import PositiveInt, StrUpper
 
-# conn
 CONNECT = sqlite3.connect("mydatabase.db")
 
 class table(type):
@@ -47,6 +46,7 @@ class A(metaclass = table):
 						SET id = {self.id_name}, name = '{self.name}'\
 						WHERE id = {self.start_id_name}")
 		CONNECT.commit()
+		self.start_id_name = self.id_name
 		cursor.close()
 
 	@classmethod
@@ -55,6 +55,8 @@ class A(metaclass = table):
 		print("id\tname")
 		for id_name, name in cursor.execute(f"SELECT * FROM {cls.class_name}"):
 			print(f"{id_name}\t{name}")
+			# добавить возвращение 
+			# rfr django
 		cursor.close()
 
 	@classmethod
