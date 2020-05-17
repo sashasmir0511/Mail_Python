@@ -52,12 +52,10 @@ class A(metaclass = table):
 	@classmethod
 	def all(cls):
 		cursor = CONNECT.cursor()
-		print("id\tname")
-		for id_name, name in cursor.execute(f"SELECT * FROM {cls.class_name}"):
-			print(f"{id_name}\t{name}")
-			# добавить возвращение 
-			# rfr django
+		cursor.execute(f"SELECT * FROM {cls.class_name}")
+		lst = cursor.fetchall()
 		cursor.close()
+		return lst
 
 	@classmethod
 	def update(cls, **kwargs):
