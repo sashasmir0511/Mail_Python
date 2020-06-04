@@ -92,6 +92,3 @@ class A(metaclass = table):
 			print(f"{id_name}\t{name}")
 		cursor.close()
 		return sql
-
-#update
-#save

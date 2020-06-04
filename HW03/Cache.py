@@ -27,20 +27,6 @@ class LRUCache_t:
 		self.dict_time = {}
 		self.dict = {}
 
-	def get(self, key: str) -> str:
-		result = self.dict.get(key, "")
-		if result != "":
-			self.dict_time[key] = datetime.now()
-		return(result)
-
-	def get_last_time(self) -> str:
-		last_time = datetime.now()
-		for i in self.dict_time.keys():
-			if last_time > self.dict_time[i]:
-				last_time = self.dict_time[i]
-				key = i
-		return key
-
 	def set(self, key: str, value: str) -> None:
 		self.dict[key] = value
 		self.dict_time[key] = datetime.now()
@@ -48,6 +34,21 @@ class LRUCache_t:
 			key = self.get_last_time()
 			self.dict.pop(key)
 			self.dict_time.pop(key)
+
+	def get(self, key: str) -> str:
+		result = self.dict.get(key, "")
+		if result != "":
+			self.dict_time[key] = datetime.now()
+		return(result)
+
+	# сделать за const
+	def get_last_time(self) -> str:
+		last_time = datetime.now()
+		for i in self.dict_time.keys():
+			if last_time > self.dict_time[i]:
+				last_time = self.dict_time[i]
+				key = i
+		return key
 
 	def delete(self, key: str) -> None:
 		self.dict.pop(key)
