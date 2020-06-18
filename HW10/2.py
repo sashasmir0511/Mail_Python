@@ -1,13 +1,7 @@
 import os
-import argparse
+import sys
 import datetime
 import xlwt
-
-
-parser = argparse.ArgumentParser(description="Free or not places")
-
-parser.add_argument("-p", "--path", type=str, help="Path to dir or file")
-args = parser.parse_args()
 
 
 def get_data(path, data, level=0):
@@ -25,8 +19,8 @@ def get_data(path, data, level=0):
 
 
 if __name__ == "__main__":
-	path = args.path
-	data = [["Name", "Type", "Size", "Date changes", "Abs path", "Level"]]
+	path = sys.argv[1]
+	data = [["Имя", "Тип", "Размер", "Дата", "Абсолютный путь", "Уровень вложенности"]]
 	get_data(path, data)
 	book = xlwt.Workbook()
 	sheet1 = book.add_sheet("Sheet1")
@@ -35,4 +29,4 @@ if __name__ == "__main__":
 		for col in range(len(data[num])):
 			value = data[num][col]
 			row.write(col, value)
-	book.save("test.xls")
+	book.save("tqwer.xls")

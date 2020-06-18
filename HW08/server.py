@@ -64,9 +64,7 @@ def build_worker_pool(q, lock, size, func, conn):
 
 def finish(signal_num, frame):
 	global count_url
-	print("\n---------- \n")
-	print(f"----- Count URL: {count_url} ----- \n")
-	print("DAEMON STOP")
+	print(f"Count URL: {count_url}")
 	raise SystemExit()
 
 
